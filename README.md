@@ -14,5 +14,5 @@ Minimal pixi.js application boilerplate
 > localhost:3000
 
 ## ToDo
-[ ] production config
-[ ] eslint
+* [ ] production config
+* [ ] eslint
