@@ -1,9 +1,10 @@
 export default class Logo {
   constructor() {
+    this.active = true;
     this.rotation = 0;
   }
 
-  tick(delta) {
+  onTick(delta) {
     this.rotation += 0.01 * delta;
   }
 };

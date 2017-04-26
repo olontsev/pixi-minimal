@@ -10,24 +10,33 @@ class App {
     this.pixi.ticker.add(this.onTick);
 
     this.models = {
-      Logo: new Logo({app: this})
+      logo: new Logo()
     };
     this.views = {
-      Logo: new LogoView({ app: this, logo: this.models.Logo })
+      logo: new LogoView({ app: this, logo: this.models.logo })
     };
+    this.activate(this.views.logo);
 
     this.onResize();
   };
 
+  activate = (module) => {
+    if(module.onActivate)
+      module.onActivate();
+    if(module.getView && module.getView())
+      this.pixi.stage.addChild(module.getView());
+    module.active = true;
+  };
+
   onTick = (delta) => {
     for (let modelId in this.models) {
-      if (this.models.hasOwnProperty(modelId)) {
-        this.models[modelId].tick(delta);
+      if (this.models.hasOwnProperty(modelId) && this.models[modelId].active) {
+        this.models[modelId].onTick(delta);
       }
     }
     for (let viewId in this.views) {
-      if (this.views.hasOwnProperty(viewId)) {
-        this.views[viewId].tick(delta);
+      if (this.views.hasOwnProperty(viewId) && this.views[viewId].active) {
+        this.views[viewId].onTick(delta);
       }
     }
   };
@@ -42,7 +51,7 @@ class App {
     for (let viewId in this.views) {
       if (this.views.hasOwnProperty(viewId)) {
         let view = this.views[viewId];
-        view.resize();
+        view.onResize();
       }
     }
   }
