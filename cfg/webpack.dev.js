@@ -1,7 +1,7 @@
 const path = require('path');
 const DEV_SERVER_PORT = 3000;
 const ASSETS_PATH = '/assets/';
-const BUILD_PATH = path.resolve(__dirname, `public${ASSETS_PATH}`);
+const BUILD_PATH = path.resolve(__dirname, `../public${ASSETS_PATH}`);
 
 module.exports = {
   entry: [
@@ -12,7 +12,7 @@ module.exports = {
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
-    contentBase: 'public/'
+    contentBase: '../public/'
   },
   output: {
     publicPath: ASSETS_PATH,
