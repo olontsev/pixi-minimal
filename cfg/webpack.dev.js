@@ -12,7 +12,7 @@ module.exports = {
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
-    contentBase: '../public/'
+    contentBase: 'public/'
   },
   output: {
     publicPath: ASSETS_PATH,
